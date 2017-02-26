@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sign Up For Beta Form</title>
+    <link rel="stylesheet" href="air.css">
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+    <script>
+  function startDictation() {
+ 
+    if (window.hasOwnProperty('webkitSpeechRecognition')) {
+ 
+      var recognition = new webkitSpeechRecognition();
+ 
+      recognition.continuous = false;
+      recognition.interimResults = false;
+ 
+      recognition.lang = "en-US";
+      recognition.start();
+ 
+      recognition.onresult = function(e) {
+        document.getElementById('email').value
+                                 = e.results[0][0].transcript;
+        recognition.stop();
+        document.getElementById('f1').submit();
+      };
+ 
+      recognition.onerror = function(e) {
+        recognition.stop();
+      }
+ 
+    }
+  }
+  </script>
+  </head>
+  <body>
+    <form target="_blank" method="get" name="f1" id="f1">
+      <div class="header">
+         <p>A.I.R. (Beta)</p>
+      </div>
+      <div class="description">
+        <p>A.I.R. allows you to summarise any web page into a beautifuly crafted document or presentation making work a bit less dreadful than it already is.</p>
+      </div>
+      <div class="input">
+        <input type="text" class="button" id="email" name="linkname" placeholder="ENTER THE URL"> 
+        <p>
+        <input type="submit" formaction="../cgi-bin/summariser1.py" class="button" id="submit" value="SUMMARISE!"> 
+        <p>
+        <input type="submit" formaction="../cgi-bin/modifiedtestppt.py" class="button" id="submit" value="PPT!">
+        <p>
+        <input type="button" onclick="startDictation()" class="button1" id="submit1" value="Voice">
+        <p>
+      </div>
+    </form>
+  </body>
+</html>
